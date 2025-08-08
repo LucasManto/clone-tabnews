@@ -1,0 +1,52 @@
+# TabNews API Tests
+@host=https://clone-tabnews-gejrhiobs-lucasmantos-projects.vercel.app/api/v1
+
+## Operational Endpoints
+
+### Get Status
+GET {{host}}/status
+
+### Get migrations yet to run
+GET {{host}}/migrations
+
+### Run migrations
+POST {{host}}/migrations
+
+## User Endpoints
+
+### Create user
+POST {{host}}/users
+Content-Type: application/json
+
+{
+	"username": "testuser",
+	"email": "example@example.com",
+	"password": "password123"
+}
+
+### Get user by username
+GET {{host}}/users/testuser
+
+### Update user
+PATCH {{host}}/users/testuser
+Content-Type: application/json
+
+{
+	"email": ""
+}
+
+## Session Endpoints
+
+### Create session
+# @name createsession
+POST {{host}}/sessions
+Content-Type: application/json
+
+{
+	"email": "example@example.com",
+	"password": "password123"
+}
+
+### Do something
+
+@session={{createsession.response.body.$.token}}
